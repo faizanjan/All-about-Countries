@@ -1,6 +1,12 @@
+import { Link } from "react-router-dom";
+
 let CountryCard = ({ name, population, region, capital, flags }) => {
   return (
-    <div className="card shadow m-4" style={{ width: "18rem" }}>
+    <Link
+      to={"/details"}
+      className="card shadow m-4"
+      style={{ width: "18rem", textDecoration: "none", color: "inherit" }}
+    >
       <img
         src={flags["png"]}
         className="card-img-top img-fluid border border-bottom"
@@ -15,7 +21,7 @@ let CountryCard = ({ name, population, region, capital, flags }) => {
           <li className="card-text">Capital : {capital}</li>
         </ul>
       </div>
-    </div>
+    </Link>
   );
 };
 
