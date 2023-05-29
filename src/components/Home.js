@@ -1,7 +1,7 @@
 import { useState } from "react";
 import allCountries from "../allCountries";
-import CountryCard from "./countryCard";
-import SearchAndFilter from "./searchAndFilter";
+import CountryCard from "./CountryCard";
+import SearchAndFilter from "./SearchAndFilter";
 
 let Home = () => {
   let [region, setRegion] = useState(null);
