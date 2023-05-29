@@ -3,7 +3,7 @@ import allCountries from "../allCountries";
 import CountryCard from "./CountryCard";
 import SearchAndFilter from "./SearchAndFilter";
 
-let Home = () => {
+let Home = ({ setCountry }) => {
   let [region, setRegion] = useState(null);
   let [searchText, setSearchText] = useState("");
 
@@ -23,11 +23,8 @@ let Home = () => {
           .map((country) => (
             <CountryCard
               key={country["name"]["official"]}
-              name={country["name"]["common"]}
-              population={country["population"]}
-              region={country["region"]}
-              capital={country["capital"]}
-              flags={country["flags"]}
+              country={country}
+              setCountry={setCountry}
             />
           ))}
       </div>
