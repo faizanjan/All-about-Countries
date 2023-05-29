@@ -3,15 +3,15 @@ import allCountries from "../allCountries";
 import CountryCard from "./CountryCard";
 import SearchAndFilter from "./SearchAndFilter";
 
-let Home = ({ setCountry }) => {
+let Home = ({ setCountry, isDarkMode }) => {
   let [region, setRegion] = useState(null);
   let [searchText, setSearchText] = useState("");
 
   return (
-    <>
-      <SearchAndFilter setRegion={setRegion} setSearchText={setSearchText} />
+    <div className={(isDarkMode? " text-light bg-dark": " text-dark bg-light")}>
+      <SearchAndFilter setRegion={setRegion} setSearchText={setSearchText} isDarkMode={isDarkMode}/>
 
-      <div className="all-countries p-5 d-flex flex-row justify-content-around flex-wrap">
+      <div className={"all-countries p-5 d-flex flex-row justify-content-around flex-wrap"+ (isDarkMode? " bg-dark": " bg-light")}>
         {allCountries
           .filter(
             (country) =>
@@ -25,10 +25,11 @@ let Home = ({ setCountry }) => {
               key={country["name"]["official"]}
               country={country}
               setCountry={setCountry}
+              isDarkMode={isDarkMode}
             />
           ))}
       </div>
-    </>
+    </div>
   );
 };
 

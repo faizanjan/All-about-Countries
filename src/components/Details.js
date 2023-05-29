@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import allCountries from "../allCountries";
 
-let Details = ({ country, setCountry }) => {
+let Details = ({ country, setCountry, isDarkMode }) => {
   let { name, population, region, subregion, capital, borders } = country;
 
   let currencies = [];
@@ -18,11 +18,11 @@ let Details = ({ country, setCountry }) => {
   );
 
   return (
-    <>
-      <Link to="/" className="btn border-light px-5 py-2 shadow ms-5 my-5">
+    <div className={(isDarkMode? " text-light bg-secondary": " text-dark bg-light")} style={{height:"100vh"}}>
+      <Link to="/" className={"btn border-light px-5 py-2 shadow ms-5 my-5"+ (isDarkMode? " text-light bg-secondary border-dark": " text-dark bg-light")}>
         &#8678; Back
       </Link>
-      <div className="card mb-3 mx-auto border-none" style={{ width: "80vw" }}>
+      <div className={"card mb-3 mx-auto border-none"+ (isDarkMode? " text-light bg-dark": " text-dark bg-light")} style={{ width: "80vw" }}>
         <div className="row g-0">
           <div className="col-md-4">
             <img
@@ -66,7 +66,7 @@ let Details = ({ country, setCountry }) => {
                 {borderCountries.map((country) => (
                   <button
                     key={country["cnn3"]}
-                    className="btn btn-outline-dark mx-2"
+                    className={"btn btn-outline-dark mx-2"+ (isDarkMode? " text-light border-light bg-dark": " text-dark bg-light")}
                     onClick={() => {
                       setCountry(country);
                     }}
@@ -79,7 +79,7 @@ let Details = ({ country, setCountry }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

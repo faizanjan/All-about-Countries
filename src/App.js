@@ -6,18 +6,42 @@ import { useState } from "react";
 
 function App() {
   let [countryForDetails, setCountryForDetails] = useState(allCountries[0]);
+  let [isDarkMode, setDarkMode] = useState(false);
 
   return (
     <>
-      <header className="d-flex flex-row justify-content-between px-5 my-2 py-3 border-bottom">
+      <header
+        className={
+          "d-flex flex-row justify-content-between px-5 mb-2 py-3 border-bottom" +
+          (isDarkMode ? " text-light bg-dark" : " text-dark bg-light")
+        }
+      >
         <h3>Where in the World?</h3>
-        <button className="btn fw-bold">Dark Mode</button>
+        <span className="d-flex flex-row align-items-center">
+          <button
+            className={
+              "btn fw-bold" +
+              (isDarkMode ? " text-light bg-dark" : " text-dark bg-light")
+            }
+            onClick={() => {
+              setDarkMode(!isDarkMode);
+            }}
+          >
+            <i
+              className={isDarkMode ? "fa-solid fa-sun" : "fa-solid fa-moon"}
+            ></i>{" "}
+            &nbsp;
+            {isDarkMode ? "Light Mode" : "Dark Mode"}
+          </button>
+        </span>
       </header>
 
       <div className="App">
         <Routes>
           <Route
-            element={<Home setCountry={setCountryForDetails} />}
+            element={
+              <Home setCountry={setCountryForDetails} isDarkMode={isDarkMode} />
+            }
             path="/"
           />
           <Route
@@ -25,6 +49,7 @@ function App() {
               <Details
                 country={countryForDetails}
                 setCountry={setCountryForDetails}
+                isDarkMode={isDarkMode}
               />
             }
             path="/details"
@@ -34,5 +59,4 @@ function App() {
     </>
   );
 }
-
 export default App;
