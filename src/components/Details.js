@@ -14,7 +14,7 @@ let Details = ({ country, setCountry }) => {
   }
 
   let borderCountries = allCountries.filter((country) =>
-    borders.includes(country["fifa"])
+    borders && borders.includes(country["fifa"])
   );
 
   return (
@@ -65,6 +65,7 @@ let Details = ({ country, setCountry }) => {
 
                 {borderCountries.map((country) => (
                   <button
+                    key={country["cnn3"]}
                     className="btn btn-outline-dark mx-2"
                     onClick={() => {
                       setCountry(country);
