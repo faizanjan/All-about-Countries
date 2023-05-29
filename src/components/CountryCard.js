@@ -8,6 +8,7 @@ let CountryCard = ({ country, setCountry, isDarkMode }) => {
       className={"card shadow m-4"+ (isDarkMode? " text-light bg-secondary": " text-dark bg-light")}
       style={{ width: "18rem", textDecoration: "none", color: "inherit" }}
       onClick={() => {
+        window.scrollTo(0,0);
         setCountry(country);
       }}
     >
