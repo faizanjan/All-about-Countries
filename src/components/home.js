@@ -15,14 +15,10 @@ let Home = () => {
         {allCountries
           .filter(
             (country) =>
-              (region === null &&
-                country["name"]["common"]
-                  .toLowerCase()
-                  .startsWith(searchText.toLowerCase())) ||
-              (country["region"] === region &&
-                country["name"]["common"]
-                  .toLowerCase()
-                  .startsWith(searchText.toLowerCase()))
+              country["name"]["common"]
+                .toLowerCase()
+                .startsWith(searchText.toLowerCase()) &&
+              (region === null || country["region"] === region)
           )
           .map((country) => (
             <CountryCard
