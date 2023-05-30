@@ -14,7 +14,7 @@ let Details = ({ country, setCountry, isDarkMode }) => {
   }
 
   let borderCountries = allCountries.filter((country) =>
-    borders && borders.includes(country["fifa"])
+    borders && borders.includes(country["cca3"])
   );
 
   return (
