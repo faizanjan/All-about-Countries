@@ -13,6 +13,7 @@ let Details = ({ isDarkMode }) => {
       .then((data) => {
         setCountry(data[0]);
         setIsLoading(false);
+        window.scrollTo(0, 0);
       })
       .catch((error) => {
         console.error("Error fetching country data:", error);
@@ -105,7 +106,7 @@ let Details = ({ isDarkMode }) => {
               <div className="border-countries">
                 <span>Border Countries: </span>
 
-                {country.borders.map((code) => (
+                {country.borders?.map((code) => (
                   <Link
                     key={code}
                     className={
@@ -118,7 +119,7 @@ let Details = ({ isDarkMode }) => {
                   >
                     {code}
                   </Link>
-                ))}
+                )) || "N/A"}
               </div>
             </div>
           </div>
