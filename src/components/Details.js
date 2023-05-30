@@ -5,7 +5,7 @@ import { useTheme } from "../ThemeContext";
 let Details = ({ }) => {
 
   const isDarkMode = useTheme();
-  
+
   const [country, setCountry] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -36,7 +36,7 @@ let Details = ({ }) => {
 
   let languages = [];
   for (let index in country.languages) {
-    languages.push(country.languages[index]);
+    languages.push(country.languages[index]+", ");
   }
 
   return (
