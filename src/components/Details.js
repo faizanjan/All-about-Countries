@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useTheme } from "../ThemeContext";
 
-let Details = ({ isDarkMode }) => {
+let Details = ({ }) => {
+
+  const isDarkMode = useTheme();
+  
   const [country, setCountry] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 

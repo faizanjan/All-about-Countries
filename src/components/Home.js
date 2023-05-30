@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import CountryCard from "./CountryCard";
 import SearchAndFilter from "./SearchAndFilter";
+import { useTheme } from "../ThemeContext";
 
-let Home = ({ isDarkMode }) => {
+let Home = () => {
   let [region, setRegion] = useState(null);
   let [searchText, setSearchText] = useState("");
 
   const [allCountries, setAllCountries] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+
+  const isDarkMode = useTheme();
 
   useEffect(() => {
     fetch(`https://restcountries.com/v3.1/all`)
@@ -39,7 +42,6 @@ let Home = ({ isDarkMode }) => {
       <SearchAndFilter
         setRegion={setRegion}
         setSearchText={setSearchText}
-        isDarkMode={isDarkMode}
       />
 
       <div
@@ -52,7 +54,6 @@ let Home = ({ isDarkMode }) => {
           <CountryCard
             key={country["name"]["official"]}
             country={country}
-            isDarkMode={isDarkMode}
           />
         ))}
       </div>

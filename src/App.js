@@ -1,10 +1,11 @@
 import Home from "./components/Home";
 import Details from "./components/Details";
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useTheme, useThemeUpdate } from "./ThemeContext";
 
 function App() {
-  let [isDarkMode, setDarkMode] = useState(false);
+  const isDarkMode = useTheme();
+  const toggleTheme = useThemeUpdate();
 
   return (
     <>
@@ -21,9 +22,7 @@ function App() {
               "btn fw-bold" +
               (isDarkMode ? " text-light bg-dark" : " text-dark bg-light")
             }
-            onClick={() => {
-              setDarkMode(!isDarkMode);
-            }}
+            onClick={toggleTheme}
           >
             <i
               className={isDarkMode ? "fa-solid fa-sun" : "fa-solid fa-moon"}
@@ -36,9 +35,9 @@ function App() {
 
       <div className="App">
         <Routes>
-          <Route element={<Home isDarkMode={isDarkMode} />} path="/" />
+          <Route element={<Home />} path="/" />
           <Route
-            element={<Details isDarkMode={isDarkMode} />}
+            element={<Details/>}
             path="/details"
           />
         </Routes>

@@ -1,4 +1,9 @@
-let SearchAndFilter = ({ setRegion, setSearchText, isDarkMode }) => {
+import { useTheme } from "../ThemeContext";
+
+let SearchAndFilter = ({ setRegion, setSearchText }) => {
+  
+  const isDarkMode = useTheme();
+  
   let regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
   return (

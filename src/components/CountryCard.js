@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
+import { useTheme } from "../ThemeContext";
 
-let CountryCard = ({ country, isDarkMode }) => {
+let CountryCard = ({ country }) => {
   let { flags, name, population, region, capital, cca3 } = country;
+  const isDarkMode = useTheme();
+
   return (
     <Link
       to={"/details?countryCode=" + cca3}
