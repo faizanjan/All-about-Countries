@@ -1,16 +1,15 @@
 import { Link } from "react-router-dom";
 
-let CountryCard = ({ country, setCountry, isDarkMode }) => {
-  let { flags, name, population, region, capital } = country;
+let CountryCard = ({ country, isDarkMode }) => {
+  let { flags, name, population, region, capital, cca3 } = country;
   return (
     <Link
-      to={"/details"}
-      className={"card shadow m-4"+ (isDarkMode? " text-light bg-secondary": " text-dark bg-light")}
+      to={"/details?countryCode=" + cca3}
+      className={
+        "card shadow m-4" +
+        (isDarkMode ? " text-light bg-secondary" : " text-dark bg-light")
+      }
       style={{ width: "18rem", textDecoration: "none", color: "inherit" }}
-      onClick={() => {
-        window.scrollTo(0,0);
-        setCountry(country);
-      }}
     >
       <img
         src={flags["png"]}

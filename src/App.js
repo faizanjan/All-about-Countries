@@ -1,11 +1,9 @@
 import Home from "./components/Home";
 import Details from "./components/Details";
-import allCountries from "./allCountries";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
 function App() {
-  let [countryForDetails, setCountryForDetails] = useState(allCountries[0]);
   let [isDarkMode, setDarkMode] = useState(false);
 
   return (
@@ -38,20 +36,9 @@ function App() {
 
       <div className="App">
         <Routes>
+          <Route element={<Home isDarkMode={isDarkMode} />} path="/" />
           <Route
-            element={
-              <Home setCountry={setCountryForDetails} isDarkMode={isDarkMode} />
-            }
-            path="/"
-          />
-          <Route
-            element={
-              <Details
-                country={countryForDetails}
-                setCountry={setCountryForDetails}
-                isDarkMode={isDarkMode}
-              />
-            }
+            element={<Details isDarkMode={isDarkMode} />}
             path="/details"
           />
         </Routes>

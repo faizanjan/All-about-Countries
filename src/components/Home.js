@@ -1,11 +1,30 @@
-import { useState } from "react";
-import allCountries from "../allCountries";
+import { useState, useEffect } from "react";
 import CountryCard from "./CountryCard";
 import SearchAndFilter from "./SearchAndFilter";
 
-let Home = ({ setCountry, isDarkMode }) => {
+let Home = ({ isDarkMode }) => {
   let [region, setRegion] = useState(null);
   let [searchText, setSearchText] = useState("");
+
+  const [allCountries, setAllCountries] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`https://restcountries.com/v3.1/all`)
+      .then((response) => response.json())
+      .then((data) => {
+        setAllCountries(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching country data:", error);
+        setIsLoading(false);
+      });
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Display a loading indicator
+  }
 
   let countriesToDisplay = allCountries.filter(
     (country) =>
@@ -33,7 +52,6 @@ let Home = ({ setCountry, isDarkMode }) => {
           <CountryCard
             key={country["name"]["official"]}
             country={country}
-            setCountry={setCountry}
             isDarkMode={isDarkMode}
           />
         ))}
