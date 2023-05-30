@@ -39,23 +39,21 @@ let Home = () => {
 
   return (
     <div className={isDarkMode ? " text-light bg-dark" : " text-dark bg-light"}>
-      <SearchAndFilter
-        setRegion={setRegion}
-        setSearchText={setSearchText}
-      />
+      <SearchAndFilter setRegion={setRegion} setSearchText={setSearchText} />
 
       <div
         className={
           "all-countries p-5 d-flex flex-row justify-content-around flex-wrap" +
-          (isDarkMode ? " bg-dark" : " bg-light")
+          (isDarkMode ? " bg-dark text-light" : " bg-light text-dark")
         }
       >
-        {countriesToDisplay.map((country) => (
-          <CountryCard
-            key={country["name"]["official"]}
-            country={country}
-          />
-        ))}
+        {countriesToDisplay.length!==0 ? (
+          countriesToDisplay.map((country) => (
+            <CountryCard key={country["name"]["official"]} country={country} />
+          ))
+        ) : (
+          <h1>Country Not Found!</h1>
+        )}
       </div>
     </div>
   );
